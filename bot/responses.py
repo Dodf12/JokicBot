@@ -8,11 +8,16 @@ def get_response(user_input): #makes user input all howercase
   return lowered
 
 def evaluate_response(lowered):
-  if lowered == "!hello":
-    return "flying"
-  return "bombulu"
 
-  print("happy 2")
+  pattern = r"^!(\w+)(.*)"
+
+  match = re.match(pattern, lowered)
+
+  if match: 
+    command = match.group(1)
+    arguments = match.group(2).strip()
+    return command + " " + arguments
+  return "That is not a viable command"
 
 
 
