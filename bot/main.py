@@ -1,5 +1,5 @@
 from discord import Intents, Client, Message  
-#import responses 
+import responses 
 import os
 from dotenv import load_dotenv, dotenv_values
 
