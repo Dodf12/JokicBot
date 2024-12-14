@@ -1,0 +1,20 @@
+my_project/
+├── .gitignore
+├── LICENSE
+├── README.md
+├── .env  # Environment variables, should be in .gitignore
+├── requirements.txt  # Add if needed for dependencies
+├── config/
+│   └── config.py  # If you have configuration logic/settings
+├── src/
+│   ├── __init__.py  # To make it a Python package
+│   ├── main.py  # Main entry point
+│   ├── fantasyStats.py  # Module related to Fantasy stats
+│   ├── response_processor.py  # Module to handle responses
+│   └── responses.py  # Any other module related to responses
+├── tests/
+│   └── test_response_processor.py  # Example test file
+├── assets/
+│   └── logo.png  # Static image files
+├── docs/
+│   └── organizationExample.txt  # Documentation, move this here
