@@ -44,8 +44,7 @@ async def sendMessage(message, user_message):
   """
   #Sees if user wants a private message in channel or public message
   try:
-    response1 = responses.get_response(user_message)
-    response = responses.evaluate_response(response1)
+    response = responses.evaluate_response(user_message)
     await message.author.send(response) if user_message[0] == '?' else await message.channel.send(response)
   except Exception as e:
     print(e)

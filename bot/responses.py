@@ -1,11 +1,12 @@
 import string
 import re
+from fantasyStats import getPlayerPPG
 
 
 
-def get_response(user_input): #makes user input all howercase
-  lowered = user_input.lower()
-  return lowered
+# def get_response(user_input): #makes user input all howercase
+#   lowered = user_input.lower()
+#   return lowered
 
 def evaluate_response(lowered):
 
@@ -16,8 +17,15 @@ def evaluate_response(lowered):
   if match: 
     command = match.group(1)
     arguments = match.group(2).strip()
-    return command + " " + arguments
+    information = command_outputter([command,arguments])
+    return information
   return "That is not a viable command"
+
+def command_outputter(arr):
+  if (arr[0] == "ppg"):
+    print(arr[1])
+    return getPlayerPPG(arr[1])
+
 
 
 
