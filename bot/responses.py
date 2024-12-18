@@ -1,6 +1,6 @@
 import string
 import re
-from fantasyStats import getPlayerPPG
+from api.playerFantasyStats import getPlayerPPG
 
 
 
@@ -22,9 +22,10 @@ def evaluate_response(lowered):
   return "That is not a viable command"
 
 def command_outputter(arr):
-  if (arr[0] == "ppg"):
+  if (arr[0] == "fppg"):
     print(arr[1])
     return getPlayerPPG(arr[1])
+
 
 
 

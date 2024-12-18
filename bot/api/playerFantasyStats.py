@@ -38,6 +38,21 @@ def getPlayerPPG(playerName):
                 return player.avg_points
     return "This player does not exist. Please enter another player"
 
-# print(getPlayerPPG("Damian Lillard"))
+def getBigFive(playerName):
+    playerName = playerName.title()
+    for team in league.teams:
+        for player in team.roster:
+            if player.name == playerName:
+                return player.avg_points
+    return "This player does not exist. Please enter another player"
+
+def getOtherPlayerStats(playerName):
+    playerName = playerName.title()
+    for team in league.teams:
+        for player in team.roster:
+            if player.name == playerName:
+                print(player.stats)
+
+getOtherPlayerStats("Damian Lillard")
         
         
