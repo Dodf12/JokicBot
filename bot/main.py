@@ -77,7 +77,12 @@ async def on_message(message):
   channel = message.channel
 
   #print(channel + " " + user_message)
-  await sendMessage(message, user_message)
+  if Client.user.mentioned_in(message):
+        username = str(message.author)
+        user_message = message.content
+        user_message = user_message.replace(f"<@{Client.user.id}>", "").strip()  # Remove the mention
+        await sendMessage(message, user_message)  # Pass the remaining content for response evaluation
+  #await sendMessage(message, user_message)
 
 
 #5. MAIN POINT

@@ -24,9 +24,10 @@ def evaluate_response(lowered):
   return "That is not a viable command"
 
 def command_outputter(arr):
-  if (arr[0] == "ppg"):
+  if (arr[0] == "fppg"):
     print(arr[1])
     return getPlayerPPG(arr[1])
+  elif ()
   return getOtherPlayerStats(arr[1],arr[0])
   return "Not a valid command"
 
