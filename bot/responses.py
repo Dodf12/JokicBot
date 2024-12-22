@@ -3,11 +3,6 @@ import re
 from api.playerFantasyStats import getPlayerPPG, getOtherPlayerStats
 
 
-
-# def get_response(user_input): #makes user input all howercase
-#   lowered = user_input.lower()
-#   return lowered
-
 def evaluate_response(lowered):
 
   pattern = r"^!(\w+%?)(.*)"
@@ -27,7 +22,6 @@ def command_outputter(arr):
   if (arr[0] == "fppg"):
     print(arr[1])
     return getPlayerPPG(arr[1])
-  elif ()
   return getOtherPlayerStats(arr[1],arr[0])
   return "Not a valid command"
 
