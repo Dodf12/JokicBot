@@ -10,12 +10,14 @@ from api.playerFantasyStats import getPlayerPPG, getOtherPlayerStats
 
 def evaluate_response(lowered):
 
-  pattern = r"^!(\w+)(.*)"
+  pattern = r"^!(\w+%?)(.*)"
+
 
   match = re.match(pattern, lowered)
 
   if match: 
     command = match.group(1)
+    print("command " + command)
     arguments = match.group(2).strip()
     information = command_outputter([command,arguments])
     return information
