@@ -46,13 +46,27 @@ def getBigFive(playerName):
                 return player.avg_points
     return "This player does not exist. Please enter another player"
 
-def getOtherPlayerStats(playerName):
+def getOtherPlayerStats(playerName, command):
+
+    playerFound = False
+    # if command not in playerName.stats:
+    #     return "This is not a valid command. Please enter another command"
     playerName = playerName.title()
+    command = command.upper()
+
     for team in league.teams:
         for player in team.roster:
             if player.name == playerName:
-                print(player.stats)
+                try:
+                    return player.stats['2025_total']['avg'][command]
+                except KeyError:
+                    return "Sorry, your player is valid, but not your command. Please re-enter your command"
+    return "Your player and/or command is incorrect. Please make sure your player name is correct and command is in the list of available commands"
 
-getOtherPlayerStats("Damian Lillard")
-        
+    # elif (playerFound == False and command not in playerName.stats):
+    #     return "This player does not exist. Please enter another player. This is also not a valid command. Please enter another command "
+    # return "This player does not exist. Please enter another player"
+
+#print(getOtherPlayerStats("Damian Lillard",'rmg'))
+#print(getPlayerPPG("Lebron James"))
         
