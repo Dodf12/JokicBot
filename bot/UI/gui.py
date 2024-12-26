@@ -1,6 +1,9 @@
 from responses import Responses, command_outputter
 import discord
 
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
 class Gui:
   def __init__(self):
     self.req = ""
@@ -16,5 +19,17 @@ class Gui:
 
     embed.set_thumbnail
     # Add footer
-    embed.set_footer(text= str(embed.timestamp) + "|Data fetched live")
+
+    # Specify the time zone
+    timezone = ZoneInfo("America/Los_Angeles")
+
+    # Get the current time in the specified time zone
+    local_time = datetime.now(timezone)
+
+
+    embed.set_footer(text="Data fetched live | " + str(local_time))
     return embed
+  
+
+    #   localTime = str(datetime.now(ZoneInfo("America/Los_Angeles")))
+    # footer =  " " localTime + "|Data fetched live"
