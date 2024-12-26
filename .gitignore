@@ -1,2 +1,4 @@
 .env
 bot /__pycache__
+UI /__pycache__
+api /__pycache__
