@@ -1,7 +1,9 @@
 from discord import Intents, Client, Message  
-import responses 
+import discord
+from responses import Responses, command_outputter
 import os
 from dotenv import load_dotenv, dotenv_values
+from UI.gui import Gui
 
 #Load token
 load_dotenv()
@@ -44,8 +46,24 @@ async def sendMessage(message, user_message):
   """
   #Sees if user wants a private message in channel or public message
   try:
-    response = responses.evaluate_response(user_message)
-    await message.author.send(response) if user_message[0] == '?' else await message.channel.send(response)
+
+    # obj = Responses()
+    # response = obj.evaluate_response(user_message)
+    # embed = discord.Embed(
+    #     title= response,
+    #     description="" + obj.getArguments() + "'s " + obj.getCommand(),
+    #     color=discord.Color.purple()
+    # )
+
+    # embed.set_thumbnail
+    # # Add footer
+    # embed.set_footer(text= str(embed.timestamp) + "|Data fetched live")
+
+    obj = Gui()
+
+    # Send the embed
+    await message.channel.send(embed=obj.playerStatsGUI(user_message))
+    # await message.author.send(response) if user_message[0] == '?' else await message.channel.send(response)
   except Exception as e:
     print(e)
 
@@ -81,6 +99,7 @@ async def on_message(message):
         username = str(message.author)
         user_message = message.content
         user_message = user_message.replace(f"<@{Client.user.id}>", "").strip()  # Remove the mention
+  
         await sendMessage(message, user_message)  # Pass the remaining content for response evaluation
   #await sendMessage(message, user_message)
 
