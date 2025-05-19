@@ -33,39 +33,31 @@ async is a feature that allows a program to execute
 many tasks concurrently
 """
 
+# ...existing code...
+
 async def sendMessage(message, user_message):
-  if user_message == "":
-    print("Intent not enabled")
+    if user_message == "":
+        print("Intent not enabled")
+        return  # Exit early if no input
 
-  if user_message[0] == '?':
-    user_message = user_message[1:]
+    # Remove the '?' prefix if present
+    if user_message[0] == '?':
+        user_message = user_message[1:]
 
-  """
-  A try block lets us test a block of code 
-  for errors and except block lets us handle them
-  """
-  #Sees if user wants a private message in channel or public message
-  try:
+    # Preprocess the user message (e.g., strip whitespace, capitalize names)
+    user_message = user_message.strip().title()  # Capitalize each word (e.g., "lebron james" -> "LeBron James")
 
-    # obj = Responses()
-    # response = obj.evaluate_response(user_message)
-    # embed = discord.Embed(
-    #     title= response,
-    #     description="" + obj.getArguments() + "'s " + obj.getCommand(),
-    #     color=discord.Color.purple()
-    # )
+    try:
+        obj = Gui()
 
-    # embed.set_thumbnail
-    # # Add footer
-    # embed.set_footer(text= str(embed.timestamp) + "|Data fetched live")
+        # Debugging: Print the processed user message
+        print(f"Fetching stats for: {user_message}")
 
-    obj = Gui()
-
-    # Send the embed
-    await message.channel.send(embed=obj.playerStatsGUI(user_message))
-    # await message.author.send(response) if user_message[0] == '?' else await message.channel.send(response)
-  except Exception as e:
-    print(e)
+        # Send the embed with player stats
+        await message.channel.send(embed=obj.playerStatsGUI(user_message))
+    except Exception as e:
+        print(f"Error fetching player stats: {e}")
+        
 
 
 #3. Handling the Startup for Bot

@@ -17,7 +17,8 @@ class Gui:
         color=discord.Color.purple()
     )
 
-    embed.set_thumbnail
+    embed.set_thumbnail(url="https://raw.githubusercontent.com/Dodf12/JokicBot/blob/main/assets/jokicBotLogo.png")
+
     # Add footer
 
     # Specify the time zone
