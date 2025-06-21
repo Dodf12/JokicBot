@@ -22,7 +22,6 @@ class Responses:
     return self.arguments
   
   def evaluate_response(self, lowered):
-
     pattern = r"^!(\w+%?)(.*)"
     match = re.match(pattern, lowered)
 

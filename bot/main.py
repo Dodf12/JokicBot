@@ -45,7 +45,7 @@ async def sendMessage(message, user_message):
         user_message = user_message[1:]
 
     # Preprocess the user message (e.g., strip whitespace, capitalize names)
-    user_message = user_message.strip().title()  # Capitalize each word (e.g., "lebron james" -> "LeBron James")
+    user_message = user_message.strip()  # Capitalize each word (e.g., "lebron james" -> "LeBron James")
 
     try:
         obj = Gui()

@@ -1,6 +1,7 @@
 import sys
 import string
 sys.path.append('/opt/anaconda3/lib/python3.12/site-packages')
+import difflib
 
 #Load in data from .env file
 import os
@@ -19,23 +20,41 @@ try:
     league = League(league_id=72275173, year=2025, espn_s2='AECgpnX9ZmdraJJt6QbCNoG8rOXBMoltHPtbIlWNnunavnIliz9fXVhv8zGyJyT17f1EAVrZ6rWNS%2Fo2yTWk%2BdTI4jV7JYcUcshHt03D%2Fz1wuhP9b%2B6dPC3q%2FtnokyOFsjxefDq5qkqBzs9cDB6Hwu6EhUFOxazOYrXRXIARj%2FjZNYjitRV06HjtDu5lo1YXenZojXZNr8IiU388eY10a%2FjTAdxGA%2BIbNdW7K4rn%2FNdqElS0vzGYW0J9usqcTxD0YzJvSqjkE4U6anO9%2BAsbkSna',
                     swid='{E1BBCCED-47B5-4B49-B1C0-176BCE0A1992}')
     
-    # if league.teams:
-    #     team = league.teams[0]
-    #     print("hi)")
-    #     print(team.roster)
-    # else:
-    #     print("No teams found in the league.")
+    # Print all player names for debugging
+    print("=== All player names in league ===")
+    for team in league.teams:
+        for player in team.roster:
+            print(repr(player.name))
+    print("==================================")
 
 except Exception as e:
     print(f"An error occurred: {e}")
 
+# Example in playerFantasyStats.py
+import difflib
+
+def find_player_obj(playerName):
+    playerName = playerName.strip().lower()
+    all_players = [(player.name.strip().lower(), player) for team in league.teams for player in team.roster]
+    all_names = [name for name, _ in all_players]
+    match = difflib.get_close_matches(playerName, all_names, n=1, cutoff=0.5)
+    print(f"Looking for: {playerName}, Match found: {match}")
+    if match:
+        for name, player in all_players:
+            if name == match[0]:
+                return player
+    return None
+
 
 def getPlayerPPG(playerName):
-    playerName = playerName.title()
-    for team in league.teams:
-        for player in team.roster:
-            if player.name == playerName:
-                return player.avg_points
+    playerName = playerName.strip().lower()
+    all_names = [player.name.strip().lower() for team in league.teams for player in team.roster]
+    match = difflib.get_close_matches(playerName, all_names, n=1, cutoff=0.5)
+    if match:
+        for team in league.teams:
+            for player in team.roster:
+                if player.name.strip().lower() == match[0]:
+                    return player.avg_points
     return "This player does not exist. Please enter another player"
 
 def getBigFive(playerName):
@@ -51,7 +70,7 @@ def getOtherPlayerStats(playerName, command):
     playerFound = False
     # if command not in playerName.stats:
     #     return "This is not a valid command. Please enter another command"
-    playerName = playerName.title()
+    #playerName = playerName.title()
     command = command.upper()
 
     for team in league.teams:
