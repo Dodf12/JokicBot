@@ -9,16 +9,16 @@ from dotenv import load_dotenv, dotenv_values
 
 from espn_api.basketball import League
 
-
-import os
-from dotenv import load_dotenv, dotenv_values
-
-#Load token
+#Load environment variables
 load_dotenv()
-espn_S2 = os.getenv("S2")
+
+# Get credentials from environment variables
+LEAGUE_ID = os.getenv("LEAGUE_ID")
+ESPN_S2 = os.getenv("ESPN_S2")
+ESPN_SWID = os.getenv("ESPN_SWID")
+
 try:
-    league = League(league_id=72275173, year=2025, espn_s2='AECgpnX9ZmdraJJt6QbCNoG8rOXBMoltHPtbIlWNnunavnIliz9fXVhv8zGyJyT17f1EAVrZ6rWNS%2Fo2yTWk%2BdTI4jV7JYcUcshHt03D%2Fz1wuhP9b%2B6dPC3q%2FtnokyOFsjxefDq5qkqBzs9cDB6Hwu6EhUFOxazOYrXRXIARj%2FjZNYjitRV06HjtDu5lo1YXenZojXZNr8IiU388eY10a%2FjTAdxGA%2BIbNdW7K4rn%2FNdqElS0vzGYW0J9usqcTxD0YzJvSqjkE4U6anO9%2BAsbkSna',
-                    swid='{E1BBCCED-47B5-4B49-B1C0-176BCE0A1992}')
+    league = League(league_id=int(LEAGUE_ID), year=2025, espn_s2=ESPN_S2, swid=ESPN_SWID)
     
     # Print all player names for debugging
     print("=== All player names in league ===")
